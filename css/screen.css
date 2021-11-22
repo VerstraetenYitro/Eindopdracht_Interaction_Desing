@@ -25,3 +25,8 @@
   background-color: black;
   color: whitesmoke;
 }
+
+.hidden {
+  display: none;
+  /* visibility: hidden;; */
+}

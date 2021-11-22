@@ -5,6 +5,9 @@ const copyright = '&copy; <a href="https://www.openstreetmap.org/copyright">Open
 
 let map, layergroup;
 
+let listView = false;
+let list, divMap;
+
 const makeMarker = function (coords, adres, campusnaam) {
   // console.log(coords);
   const arr_coords = coords.split(',');
@@ -27,9 +30,10 @@ const addEventsToCampus = function () {
 
 const showVenues = function (data) {
   console.log(data);
-  // for (const venue of data.venues) {
-  //   console.log(venue);
-  // }
+  for (const venue of data.venues) {
+    console.log(venue);
+    //makeMarker(`${data.lat}, ${data.lon}`, 'ff', 'fff');
+  }
 };
 
 const getAPI = function (lat, lon) {
@@ -48,20 +52,48 @@ const getAPI = function (lat, lon) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      showVenues(data);
     });
 };
+
+const toggleListView = function () {
+  if (listView == true) {
+    showMap();
+    listView = false;
+  } else if (listView == false) {
+    showList();
+    listView = true;
+  }
+};
+
+const showMap = function () {
+  // eerst de kaart nog zichtbaar maken en de lijst onzichtbaar maken.
+  // onzichtbaar en zichtbaar maken met 'hidden' class toe te voegen/ verwijderen aan/van de classlist
+  list.classList.add('hidden');
+  divMap.classList.remove('hidden');
+  getAPI();
+};
+
+const showList = function () {
+  list.classList.remove('hidden');
+  divMap.classList.add('hidden');
+  let listhtml = makeList();
+  // eerst de kaart onzichtbaar maken en dan de lijst zichtbaar maken.
+};
+
+const makeList = function () {};
 
 const init = function () {
   console.log('init initiated!');
 
+  list = document.querySelector('.js-list');
+  divMap = document.querySelector('.js-map');
+
   map = L.map('mapid').setView([51.04028, 3.398512], 10);
   L.tileLayer(provider, { attribution: copyright }).addTo(map);
+
   document.querySelector('.js-btn').addEventListener('click', function () {
-    const url = 'https://cors-anywhere.herokuapp.com/https://coinmap.org/api/v1/venues/?lat1=40.0000&lon1=-75.0000&lat2=42.0000&lon2=-74.0000';
-    console.log(url);
-    // const searchQuery = `https://cors-anywhere.herokuapp.com/https://coinmap.org/api/v1/venues/?lat1=${lat}&lon1=${lon}`;
-    const request = fetch(url).then((response) => console.log(response.json()));
+    toggleListView();
   });
   getAPI(50, 4);
   console.log('end');
