@@ -4,8 +4,10 @@
   padding: 0;
 }
 
-#mapid {
-  height: 100vh;
+.map {
+  height: 95vh;
+  width: 85vw;
+  margin: auto;
 }
 
 .c-campus {
