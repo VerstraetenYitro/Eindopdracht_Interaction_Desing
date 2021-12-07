@@ -25,7 +25,6 @@ const showVenues = function (data) {
   let coords = `${data.venues[0].lat},${data.venues[0].lon}`;
   console.log(coords);
   makeMarker(coords, 'ff', 'fff');
-  //makeMarker('50.815950,3.316900', 'Luipaardstraat 12A, Kortrijk', 'Campus Kortrijk The Square');
 
   for (const venue of data.venues) {
     //console.log(venue);
@@ -37,6 +36,51 @@ const showVenues = function (data) {
   }
 };
 
+const makeCards = function (data) {
+  let id = 0;
+  let lat = 0;
+  let lon = 0;
+  let category = '';
+  let name = '';
+  console.log(list);
+  let htmlList = "";
+  for (const venue of data.venues) {
+    id = venue.id;
+    lat = venue.lat;
+    lon = venue.lon;
+    category = venue.category;
+    name = venue.name;
+    //console.log(`${id} - ${lat} - ${lon} - ${category} - ${name}`);
+
+    htmlList += `<table><tr>
+    <th></th>
+    <th></th>
+    </tr>
+    <tr>
+    <td>id:</td>
+    <td>${id}</td>
+    </tr>
+    <tr>
+    <td>lat:</td>
+    <td>${lat}</td>
+    </tr>
+    <tr>
+    <td>lon:</td>
+    <td>${lon}</td>
+    </tr>
+    <tr>
+    <td>category:</td>
+    <td>${category}</td>
+    </tr>
+    <tr>
+    <td>name:</td>
+    <td>${name}</td>
+    </tr></table>
+    <br>`;
+  }
+  list.innerHTML = htmlList;
+};
+
 const getAPI = function (lat, lon) {
   const url = 'https://testcoinmap.azurewebsites.net/api/v1/coin';
   console.log(url);
@@ -46,6 +90,7 @@ const getAPI = function (lat, lon) {
     })
     .then(function (data) {
       showVenues(data);
+      makeCards(data);
     });
 };
 
@@ -64,17 +109,13 @@ const showMap = function () {
   // onzichtbaar en zichtbaar maken met 'hidden' class toe te voegen/ verwijderen aan/van de classlist
   list.classList.add('hidden');
   divMap.classList.remove('hidden');
-  getAPI();
 };
 
 const showList = function () {
   list.classList.remove('hidden');
   divMap.classList.add('hidden');
-  let listhtml = makeList();
   // eerst de kaart onzichtbaar maken en dan de lijst zichtbaar maken.
 };
-
-const makeList = function () {};
 
 const init = function () {
   console.log('init initiated!');
@@ -82,7 +123,7 @@ const init = function () {
   list = document.querySelector('.js-list');
   divMap = document.querySelector('.js-map');
 
-  map = L.map('mapid').setView([51.04028, 3.398512], 10);
+  map = L.map('mapid').setView([51.04028, 4.398512], 9);
   L.tileLayer(provider, { attribution: copyright }).addTo(map);
   layergroup = L.layerGroup().addTo(map);
 
