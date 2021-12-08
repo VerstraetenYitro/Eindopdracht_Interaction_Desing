@@ -57,6 +57,14 @@ const makeCards = function (data) {
     <th></th>
     </tr>
     <tr>
+    <td>name:</td>
+    <td>${name}</td>
+    </tr>
+    <tr>
+    <td>category:</td>
+    <td>${category}</td>
+    </tr>
+    <tr>
     <td>id:</td>
     <td>${id}</td>
     </tr>
@@ -68,14 +76,7 @@ const makeCards = function (data) {
     <td>longitude:</td>
     <td>${lon}</td>
     </tr>
-    <tr>
-    <td>category:</td>
-    <td>${category}</td>
-    </tr>
-    <tr>
-    <td>name:</td>
-    <td>${name}</td>
-    </tr></table>
+    </table>
     <br>`;
   }
   list.innerHTML = htmlList;
