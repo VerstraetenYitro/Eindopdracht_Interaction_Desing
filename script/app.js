@@ -108,7 +108,7 @@ const showMap = function () {
   // eerst de kaart nog zichtbaar maken en de lijst onzichtbaar maken.
   // onzichtbaar en zichtbaar maken met 'hidden' class toe te voegen/ verwijderen aan/van de classlist
   list.classList.add('hidden');
-  for (const div of document.querySelectorAll('.js-card')){
+  for (const div of document.querySelectorAll('.js-card')) {
     div.classList.add('hidden');
   }
   divMap.classList.remove('hidden');
@@ -116,7 +116,7 @@ const showMap = function () {
 
 const showList = function () {
   list.classList.remove('hidden');
-  for (const div of document.querySelectorAll('.js-card')){
+  for (const div of document.querySelectorAll('.js-card')) {
     div.classList.remove('hidden');
   }
 
@@ -135,7 +135,7 @@ const init = function () {
   L.tileLayer(provider, { attribution: copyright }).addTo(map);
   layergroup = L.layerGroup().addTo(map);
 
-  document.querySelector('.js-btn').addEventListener('click', function () {
+  document.querySelector('.js-checkbox').addEventListener('change', function () {
     toggleListView();
   });
   getAPI(50, 4);
