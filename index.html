@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eindopdracht interaction design</title>
+    <meta name="theme-color" content="#44c8f5" />
+
+    <link rel="icon" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
     <link rel="stylesheet" href="css/screen.css" />
     <link rel="stylesheet" href="css/normalize.css" />
@@ -12,13 +17,12 @@
   </head>
   <body>
     <p>
-      <input class="o-hide-accessible c-option c-option--hidden js-checkbox" type="checkbox" id="toggle1">
+      <input class="o-hide-accessible c-option c-option--hidden js-checkbox" type="checkbox" id="toggle1" />
       <label class="c-label c-label--option c-custom-toggle" for="toggle1">
-          <span class="c-custom-toggle__fake-input">
-          </span>
-          Toggle list view 
+        <span class="c-custom-toggle__fake-input"> </span>
+        Toggle list view
       </label>
-  </p>
+    </p>
     <div id="mapid" class="js-map map"></div>
     <div class="js-list hidden"><p>Data is loading ...</p></div>
   </body>

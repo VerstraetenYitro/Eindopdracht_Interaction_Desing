@@ -1,0 +1,11 @@
+{
+    "name": "BTC",
+    "short_name": "BTC",
+    "icons": [{
+      "src": "favicon.png",
+      "sizes": "474x474"
+    }],
+    "theme_color": "#000",
+    "background_color": "#fff",
+    "display": "standalone"
+  }
