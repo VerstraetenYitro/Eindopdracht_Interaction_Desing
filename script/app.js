@@ -43,7 +43,7 @@ const makeCards = function (data) {
   let category = '';
   let name = '';
   console.log(list);
-  let htmlList = "";
+  let htmlList = '';
   for (const venue of data.venues) {
     id = venue.id;
     lat = venue.lat;
@@ -52,7 +52,7 @@ const makeCards = function (data) {
     name = venue.name;
     //console.log(`${id} - ${lat} - ${lon} - ${category} - ${name}`);
 
-    htmlList += `<table><tr>
+    htmlList += `<table class="js-card hidden"><tr>
     <th></th>
     <th></th>
     </tr>
@@ -61,11 +61,11 @@ const makeCards = function (data) {
     <td>${id}</td>
     </tr>
     <tr>
-    <td>lat:</td>
+    <td>latitude:</td>
     <td>${lat}</td>
     </tr>
     <tr>
-    <td>lon:</td>
+    <td>longitude:</td>
     <td>${lon}</td>
     </tr>
     <tr>
@@ -108,12 +108,20 @@ const showMap = function () {
   // eerst de kaart nog zichtbaar maken en de lijst onzichtbaar maken.
   // onzichtbaar en zichtbaar maken met 'hidden' class toe te voegen/ verwijderen aan/van de classlist
   list.classList.add('hidden');
+  for (const div of document.querySelectorAll('.js-card')){
+    div.classList.add('hidden');
+  }
   divMap.classList.remove('hidden');
 };
 
 const showList = function () {
   list.classList.remove('hidden');
+  for (const div of document.querySelectorAll('.js-card')){
+    div.classList.remove('hidden');
+  }
+
   divMap.classList.add('hidden');
+
   // eerst de kaart onzichtbaar maken en dan de lijst zichtbaar maken.
 };
 
