@@ -7,6 +7,7 @@ let map, layergroup;
 
 let listView = false;
 let list, divMap;
+let htmlList;
 
 const makeMarker = function (coords, adres, campusnaam) {
   // eerst kijken hoe de coordinaten worden doorgegeven in het andere programma en dat hier op toepassen.
@@ -43,7 +44,7 @@ const makeCards = function (data) {
   let category = '';
   let name = '';
   console.log(list);
-  let htmlList = '';
+  htmlList = '';
   for (const venue of data.venues) {
     id = venue.id;
     lat = venue.lat;
@@ -79,7 +80,6 @@ const makeCards = function (data) {
     </table>
     <br>`;
   }
-  list.innerHTML = htmlList;
 };
 
 const getAPI = function (lat, lon) {
@@ -108,6 +108,7 @@ const toggleListView = function () {
 const showMap = function () {
   // eerst de kaart nog zichtbaar maken en de lijst onzichtbaar maken.
   // onzichtbaar en zichtbaar maken met 'hidden' class toe te voegen/ verwijderen aan/van de classlist
+  list.innerHTML = '';
   list.classList.add('hidden');
   for (const div of document.querySelectorAll('.js-card')) {
     div.classList.add('hidden');
@@ -116,6 +117,7 @@ const showMap = function () {
 };
 
 const showList = function () {
+  list.innerHTML = htmlList;
   list.classList.remove('hidden');
   for (const div of document.querySelectorAll('.js-card')) {
     div.classList.remove('hidden');
